@@ -50,49 +50,43 @@
 </main>
 
 <script>
-    // انتخاب المان با کلاس درستی که در CSS نوشتید
-    const nav = document.querySelector('.glass-navbar');
-    let lastScrollTop = 0;
+    document.addEventListener('DOMContentLoaded', () => {
+        const nav = document.querySelector('.glass-navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('overlay');
+        let lastScrollTop = 0;
 
-    window.addEventListener('scroll', () => {
-        // دریافت میزان اسکرول
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // مدیریت اسکرول (فقط برای دسکتاپ)
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth > 768) {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 100) {
+                    nav.classList.add('compact');
+                } else {
+                    nav.classList.remove('compact');
+                }
+                lastScrollTop = scrollTop;
+            }
+        }, { passive: true });
 
-        // ۱. وقتی اسکرول به پایین از ۱۰۰ پیکسل گذشت -> حالت کوچک (Compact)
-        if (scrollTop > 120) { // آستانه ورود به حالت کوچک
-        nav.classList.add('compact');
-       } else if (scrollTop < 80) { // آستانه بازگشت به حالت کامل (کمی فاصله بگذار)
-        nav.classList.remove('compact');
-        
-       }
-        
-        // ۲. وقتی اسکرول به سمت بالا انجام می‌شود یا به سقف صفحه می‌رسد
-        if (scrollTop < lastScrollTop || scrollTop <= 10) {
-            nav.classList.remove('compact');
-            // ریست کردن استایل عرض که در شرط قبلی دستی داده شده بود
-            nav.style.width = ""; 
+        // مدیریت منوی همبرگری
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            // جلوگیری از اسکرول صفحه هنگام باز بودن منو
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
         }
 
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // جلوگیری از اعداد منفی در موبایل
-    }, { passive: true });
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
 
-    const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const overlay = document.getElementById('overlay');
-
-function toggleMenu() {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    overlay.classList.toggle('active');
-}
-
-hamburger.addEventListener('click', toggleMenu);
-overlay.addEventListener('click', toggleMenu); // بستن منو با کلیک روی فضای خالی
-
-// بستن منو در صورت کلیک روی لینک‌ها
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', toggleMenu);
-});
+        // بستن منو با کلیک روی لینک‌ها
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    });
 </script>
 
 <footer class="main-footer">
