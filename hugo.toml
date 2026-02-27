@@ -1,4 +1,4 @@
-baseURL = 'https://username.github.io/' # آدرس سایت خودتان را بزنید
+baseURL = 'tech2049.github.io' # آدرس سایت خودتان را بزنید
 languageCode = 'fa-ir'
-title = 'سایت جدید من'
+title = ' tech2049 '
 #theme = 'ananke' # نام قالبی که انتخاب می‌کنید
