@@ -139,6 +139,78 @@ body {
     transform: scale(0.95);
     transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
 }
+
+/* مخفی کردن همبرگری در دسکتاپ */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+/* استایل مخصوص موبایل */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* مخفی شدن در سمت راست */
+        width: 250px;
+        height: 100vh;
+        background: rgba(15, 15, 15, 0.9);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 100px 40px;
+        transition: 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+        z-index: 1000;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu.active {
+        right: 0; /* باز شدن منو */
+    }
+
+    .nav-menu a {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* استایل ضربدری شدن همبرگری هنگام باز بودن */
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* لایه تیره پشت منو */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        z-index: 999;
+    }
+    .overlay.active { display: block; }
+    
+    /* در موبایل ناوبار نباید خیلی کوچک شود */
+    .glass-navbar.compact {
+        width: 90% !important;
+        padding: 14px 25px !important;
+    }
+}
+
+
 /* گرید اصلی */
 .main-grid {
     display: grid;
