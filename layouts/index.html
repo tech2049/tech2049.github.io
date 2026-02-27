@@ -66,5 +66,33 @@
         </div>
     </footer>
 
+    // بخش اسکرول نوبار 
+<script>
+    const nav = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 100) {
+            // وقتی به پایین اسکرول می‌شود
+            nav.classList.add('scrolled');
+        } else {
+            // وقتی به بالاترین نقطه برمی‌گردد
+            nav.classList.remove('scrolled');
+        }
+        
+        // تشخیص اسکرول رو به بالا برای بازگشت به حالت کامل
+        if (scrollTop < lastScrollTop && scrollTop > 100) {
+            nav.classList.remove('scrolled');
+            nav.style.width = "90%"; // بازگشت به حالت بزرگ
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+</script>
+
+
+
 </body>
 </html>
