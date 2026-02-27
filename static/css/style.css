@@ -1,9 +1,8 @@
-/* تنظیمات پایه */
+/* متغیرهای رنگی تم طوسی و مشکی */
 :root {
-    --primary-color: #007bff;
-    --dark-bg: #1a1a1a;
-    --text-main: #333;
-    --gray-light: #f4f4f4;
+    --nav-bg: rgba(28, 28, 28, 0.7); /* مشکی شفاف */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-color: #ffffff;
 }
 
 body {
@@ -20,27 +19,79 @@ body {
     margin: 0 auto;
 }
 
-/* ناوبار */
-.navbar {
-    background: var(--dark-bg);
-    color: white;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
-.nav-flex {
+
+/* استایل پایه ناوبار به صورت حبابی و شیشه‌ای */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+    padding: 15px 30px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px); /* افکت شیشه‌ای */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px; /* حالت حبابی */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+    color: white;
 }
 
-.logo { font-size: 1.5rem; font-weight: bold; }
-.logo span { color: var(--primary-color); }
+/* هاور روی کل ناوبار */
+.navbar:hover {
+    transform: translateX(-50%) scale(1.02); /* کمی بزرگ شدن */
+}
 
-nav ul { display: flex; list-style: none; gap: 20px; }
-nav a { color: white; text-decoration: none; }
+/* استایل لوگو */
+.logo {
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.4s;
+    flex-shrink: 0;
+}
+
+/* استایل منو */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* --- حالت اسکرول شده (Shrink) --- */
+.navbar.scrolled {
+    width: 120px; /* کوچک شدن به اندازه لوگو */
+    padding: 10px;
+    top: 10px;
+}
+
+.navbar.scrolled nav {
+    display: none; /* مخفی کردن منوها هنگام اسکرول */
+}
+
+.navbar.scrolled .logo {
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
 
 /* گرید اصلی */
 .main-grid {
