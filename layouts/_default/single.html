@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
+    <header class="glass-navbar">
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="/">خانه</a>
+                <a href="/posts">مقالات</a>
+            </nav>
+            <div class="nav-logo">Tech2049</div>
+        </div>
+    </header>
+
+    <main class="single-container">
+        <article class="article-wrapper">
+            <header class="article-header">
+                <div class="article-meta">
+                    <span class="category">تکنولوژی</span>
+                    <span class="date">{{ .Date.Format "02 Jan 2026" }}</span>
+                </div>
+                <h1 class="article-title">{{ .Title }}</h1>
+                {{ if .Params.image }}
+                <div class="featured-image">
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                </div>
+                {{ end }}
+            </header>
+
+            <div class="article-content">
+                {{ .Content }}
+            </div>
+
+            <footer class="article-footer">
+                <div class="tags">
+                    <span>برچسب‌ها:</span>
+                    <a href="#">هوش مصنوعی</a>
+                    <a href="#">آینده</a>
+                </div>
+            </footer>
+        </article>
+    </main>
+
+    <footer class="main-footer">
+        <p class="footer-text">© 2026 Tech2049 - All Rights Reserved</p>
+    </footer>
+
+    </body>
+</html>
