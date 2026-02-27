@@ -7,35 +7,6 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-
-
-<script>
-    // انتخاب المان با کلاس درستی که در CSS نوشتید
-    const nav = document.querySelector('.glass-navbar');
-    let lastScrollTop = 0;
-
-    window.addEventListener('scroll', () => {
-        // دریافت میزان اسکرول
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // ۱. وقتی اسکرول به پایین از ۱۰۰ پیکسل گذشت -> حالت کوچک (Compact)
-        if (scrollTop > 100) {
-            nav.classList.add('compact');
-        } 
-        
-        // ۲. وقتی اسکرول به سمت بالا انجام می‌شود یا به سقف صفحه می‌رسد
-        if (scrollTop < lastScrollTop || scrollTop <= 10) {
-            nav.classList.remove('compact');
-            // ریست کردن استایل عرض که در شرط قبلی دستی داده شده بود
-            nav.style.width = ""; 
-        }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // جلوگیری از اعداد منفی در موبایل
-    }, { passive: true });
-</script>
-
-
-
 <body>
 
     <header class="glass-navbar" id="navbar">
@@ -75,6 +46,31 @@
         </div>
     </aside>
 </main>
+
+<script>
+    // انتخاب المان با کلاس درستی که در CSS نوشتید
+    const nav = document.querySelector('.glass-navbar');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+        // دریافت میزان اسکرول
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // ۱. وقتی اسکرول به پایین از ۱۰۰ پیکسل گذشت -> حالت کوچک (Compact)
+        if (scrollTop > 100) {
+            nav.classList.add('compact');
+        } 
+        
+        // ۲. وقتی اسکرول به سمت بالا انجام می‌شود یا به سقف صفحه می‌رسد
+        if (scrollTop < lastScrollTop || scrollTop <= 10) {
+            nav.classList.remove('compact');
+            // ریست کردن استایل عرض که در شرط قبلی دستی داده شده بود
+            nav.style.width = ""; 
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // جلوگیری از اعداد منفی در موبایل
+    }, { passive: true });
+</script>
 
 <footer class="main-footer">
     <p class="footer-text">© 2026 Tech2049 - All Rights Reserved</p>
