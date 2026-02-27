@@ -32,13 +32,24 @@
 
 <main class="main-layout">
     <section class="post-grid">
-        {{ range .Site.RegularPages }}
-        <article class="post-card">
-            <h2>{{ .Title }}</h2>
-            <p>{{ .Summary }}</p>
-        </article>
-        {{ end }}
-    </section>
+    {{ range .Site.RegularPages }}
+    <article class="post-card">
+        <div class="post-image">
+            {{ if .Params.image }}
+                <img src="{{ .Params.image }}" alt="{{ .Title }}">
+            {{ else }}
+                <div class="placeholder-img">Tech2049</div>
+            {{ end }}
+            <div class="post-date">{{ .Date.Format "02 Jan 2026" }}</div>
+        </div>
+        <div class="post-content">
+            <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            <p class="post-summary">{{ .Summary | truncate 250 }}</p>
+            <a href="{{ .Permalink }}" class="read-more">مطالعه مقاله ←</a>
+        </div>
+    </article>
+    {{ end }}
+</section>
 
     <aside class="sidebar">
         <div class="widget">
