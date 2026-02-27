@@ -57,50 +57,28 @@
     </div>
     </header>
 
-    <main class="container main-grid">
-        
-        <section class="content-area">
-            <h2 class="section-title">آخرین مطالب تکنولوژی</h2>
-            <div class="posts-grid">
-                {{ range .Site.RegularPages }}
-                <article class="post-card">
-                    {{ if .Params.image }}
-                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                    {{ end }}
-                    <div class="post-info">
-                        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                        <p>{{ .Summary | truncate 150 }}</p>
-                        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
-                    </div>
-                </article>
-                {{ end }}
-            </div>
-        </section>
+<main class="main-layout">
+    <section class="post-grid">
+        {{ range .Site.RegularPages }}
+        <article class="post-card">
+            <h2>{{ .Title }}</h2>
+            <p>{{ .Summary }}</p>
+        </article>
+        {{ end }}
+    </section>
 
-        <aside class="sidebar">
-            <div class="sidebar-widget">
-                <h3>مطالب پیشنهادی</h3>
-                <ul>
-                    {{ range first 5 .Site.RegularPages }}
-                    <li>
-                        <a href="{{ .Permalink }}">{{ .Title }}</a>
-                    </li>
-                    {{ end }}
+    <aside class="sidebar">
+        <div class="widget">
+            <h3 class="widget-title">پیشنهادی</h3>
+            <ul class="suggested-list">
                 </ul>
-            </div>
-            
-            <div class="sidebar-widget advertisement">
-                <p>تبلیغات یا خبرنامه</p>
-            </div>
-        </aside>
-
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>© 2026 تمامی حقوق برای Tech2049 محفوظ است.</p>
         </div>
-    </footer>
+    </aside>
+</main>
+
+<footer class="main-footer">
+    <p class="footer-text">© 2026 Tech2049 - All Rights Reserved</p>
+</footer>
 
 </body>
 </html>
