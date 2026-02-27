@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">Tech<span>2049</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/">خانه</a></li>
+                    <li><a href="/posts">مقالات</a></li>
+                    <li><a href="/about">درباره ما</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-grid">
+        
+        <section class="content-area">
+            <h2 class="section-title">آخرین مطالب تکنولوژی</h2>
+            <div class="posts-grid">
+                {{ range .Site.RegularPages }}
+                <article class="post-card">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                    {{ end }}
+                    <div class="post-info">
+                        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                        <p>{{ .Summary | truncate 150 }}</p>
+                        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+                    </div>
+                </article>
+                {{ end }}
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3>مطالب پیشنهادی</h3>
+                <ul>
+                    {{ range first 5 .Site.RegularPages }}
+                    <li>
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget advertisement">
+                <p>تبلیغات یا خبرنامه</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 تمامی حقوق برای Tech2049 محفوظ است.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
