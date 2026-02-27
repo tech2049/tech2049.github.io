@@ -10,28 +10,28 @@
 
 
 <script>
-    const nav = document.querySelector('.navbar');
+    // انتخاب المان با کلاس درستی که در CSS نوشتید
+    const nav = document.querySelector('.glass-navbar');
     let lastScrollTop = 0;
 
     window.addEventListener('scroll', () => {
+        // دریافت میزان اسکرول
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+        // ۱. وقتی اسکرول به پایین از ۱۰۰ پیکسل گذشت -> حالت کوچک (Compact)
         if (scrollTop > 100) {
-            // وقتی به پایین اسکرول می‌شود
-            nav.classList.add('scrolled');
-        } else {
-            // وقتی به بالاترین نقطه برمی‌گردد
-            nav.classList.remove('scrolled');
-        }
+            nav.classList.add('compact');
+        } 
         
-        // تشخیص اسکرول رو به بالا برای بازگشت به حالت کامل
-        if (scrollTop < lastScrollTop && scrollTop > 100) {
-            nav.classList.remove('scrolled');
-            nav.style.width = "90%"; // بازگشت به حالت بزرگ
+        // ۲. وقتی اسکرول به سمت بالا انجام می‌شود یا به سقف صفحه می‌رسد
+        if (scrollTop < lastScrollTop || scrollTop <= 10) {
+            nav.classList.remove('compact');
+            // ریست کردن استایل عرض که در شرط قبلی دستی داده شده بود
+            nav.style.width = ""; 
         }
-        
-        lastScrollTop = scrollTop;
-    });
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // جلوگیری از اعداد منفی در موبایل
+    }, { passive: true });
 </script>
 
 
