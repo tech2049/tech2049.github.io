@@ -160,3 +160,121 @@ body {
     .main-grid { grid-template-columns: 1fr; }
     .nav-flex { flex-direction: column; }
 }
+
+
+/* کانتینر اصلی محتوا */
+.main-layout {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr; /* ستون اصلی بزرگتر، سایدبار کوچکتر */
+    gap: 30px;
+    width: 85%;
+    max-width: 1100px;
+    margin: 140px auto 60px auto; /* حاشیه بالا برای نرفتن زیر ناوبار */
+    direction: rtl; /* برای چیدمان فارسی */
+}
+
+/* در موبایل ستون‌ها روی هم قرار بگیرند */
+@media (max-width: 900px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+        margin-top: 100px;
+    }
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.post-card img {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    filter: grayscale(30%); /* کمی تم خاکستری مدرن */
+}
+
+.post-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #efefef;
+}
+
+.post-card p {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.widget {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.widget-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-right: 3px solid #fff; /* خط دکوراتیو سمت راست تیتر */
+    padding-right: 10px;
+}
+
+.suggested-list {
+    list-style: none;
+}
+
+.suggested-item {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.suggested-item a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.suggested-item a:hover {
+    color: #fff;
+    padding-right: 5px;
+}
+
+.main-footer {
+    width: 85%;
+    max-width: 1100px;
+    margin: 40px auto 20px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    text-align: center;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
