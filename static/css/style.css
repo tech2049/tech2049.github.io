@@ -44,26 +44,23 @@ body {
     width: 85%;
     max-width: 1100px;
     z-index: 1000;
-
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-
     border-radius: 50px;
     padding: 14px 40px;
-
-    /* جادوی نرم شدن اینجاست */
+    
+    /* کلید نرمی: استفاده از یک تایمینگ بسیار دقیق */
     transition: 
-        width 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-        padding 0.5s ease, 
-        transform 0.4s ease, 
+        width 0.8s cubic-bezier(0.2, 1, 0.2, 1),
+        padding 0.8s cubic-bezier(0.2, 1, 0.2, 1),
+        transform 0.4s ease,
         background 0.5s ease;
     
-    /* برای اینکه تغییرات محتوا باعث پرش نشود */
-    overflow: hidden; 
-    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .glass-navbar.compact {
@@ -83,20 +80,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    position: relative;
 }
 
 /* Menu */
 .nav-menu {
     display: flex;
     gap: 25px;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+    opacity: 1;
 }
 
 .glass-navbar.compact .nav-menu {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* برای اینکه روی لینک‌های مخفی نشود کلیک کرد */
-    width: 0; /* کمک می‌کند فضا برای لوگو باز شود */
+    transform: translateX(20px); /* موقع محو شدن کمی به سمت راست می‌رود */
+    width: 0;
     margin: 0;
 }
 
@@ -121,8 +121,9 @@ body {
 /* ===== Compact Mode ===== */
 
 .glass-navbar.compact {
-    width: 200px;
+    width: 160px; /* کمی کوچکتر برای ظاهر حبابی‌تر */
     padding: 12px 0;
+    justify-content: center; /* لوگو را به مرکز می‌برد */
 }
 
 .glass-navbar.compact .nav-menu {
@@ -132,7 +133,12 @@ body {
 .glass-navbar.compact .nav-container {
     justify-content: center;
 }
-
+.glass-navbar.compact .nav-logo {
+    /* لوگو را دقیقا در مرکز نگه می‌دارد */
+    margin: 0 auto;
+    transform: scale(0.95);
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+}
 /* گرید اصلی */
 .main-grid {
     display: grid;
