@@ -79,6 +79,24 @@
 
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // جلوگیری از اعداد منفی در موبایل
     }, { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const overlay = document.getElementById('overlay');
+
+function toggleMenu() {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+hamburger.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', toggleMenu); // بستن منو با کلیک روی فضای خالی
+
+// بستن منو در صورت کلیک روی لینک‌ها
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
+});
 </script>
 
 <footer class="main-footer">
