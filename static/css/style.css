@@ -150,108 +150,82 @@ body {
 }
 
 .post-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 35px;
-    margin-top: 40px;
-}
-
-/* ================= CARD ================= */
-
-.post-card {
-    position: relative;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(.2,.8,.2,1);
-    backdrop-filter: blur(12px);
+    gap: 40px;
 }
 
-.post-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+/* ================= ROW STYLE ================= */
+
+.post-card {
+    display: flex;
+    flex-direction: row-reverse; /* عکس سمت راست */
+    align-items: stretch;
+    gap: 30px;
+
+    padding: 25px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: all 0.3s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-12px);
-    border-color: rgba(255,255,255,0.18);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-}
-
-.post-card:hover::before {
-    opacity: 1;
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-5px);
 }
 
 /* ================= IMAGE ================= */
 
 .post-image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    flex: 0 0 320px; /* عرض ثابت عکس */
+    height: 200px;
+    border-radius: 16px;
     overflow: hidden;
+    position: relative;
 }
 
 .post-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s cubic-bezier(.2,.8,.2,1), filter 0.7s;
-}
-
-.post-card:hover .post-image img {
-    transform: scale(1.08);
-    filter: brightness(1.1);
-}
-
-/* گرادینت روی تصویر */
-.post-image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
 }
 
 /* ================= DATE ================= */
 
 .post-date {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.65);
-    padding: 6px 14px;
-    border-radius: 30px;
+    bottom: 10px;
+    left: 10px;
+
+    background: rgba(0,0,0,0.6);
+    padding: 5px 12px;
+    border-radius: 20px;
     font-size: 12px;
     color: #fff;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
 }
 
 /* ================= CONTENT ================= */
 
 .post-content {
-    padding: 28px;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    justify-content: center;
 }
 
 .post-title {
-    font-size: 20px;
-    margin-bottom: 14px;
-    line-height: 1.4;
+    font-size: 22px;
+    margin-bottom: 15px;
 }
 
 .post-title a {
     color: #fff;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .post-title a:hover {
@@ -259,49 +233,29 @@ body {
 }
 
 .post-summary {
-    font-size: 14px;
-    color: #b5b5b5;
+    font-size: 15px;
+    color: #aaa;
     line-height: 1.9;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 
     text-align: justify;
 }
 
-/* ================= READ MORE ================= */
-
-.read-more {
-    margin-top: auto;
-    font-size: 13px;
-    color: #4da3ff;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: 0.3s;
-}
-
-.read-more:hover {
-    opacity: 0.8;
-    transform: translateX(-4px);
-}
-
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
-    .post-grid {
-        gap: 25px;
+    .post-card {
+        flex-direction: column; /* تو موبایل عکس بالا */
     }
 
-    .post-content {
-        padding: 22px;
-    }
-
-    .post-title {
-        font-size: 18px;
+    .post-image {
+        width: 100%;
+        height: 220px;
     }
 }
 
