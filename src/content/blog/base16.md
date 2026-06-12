@@ -1,7 +1,7 @@
 ---
 title:  آموزش کامل ساخت تم Base16 برای Windows Terminal و PowerShell"
 description: "در این مقاله سعی کردیم تم base 16 رو برای شما آموزش بدیم "
-cover: "/images/zero-day-cover.jpg"
+cover: "/images/base 16 color for terminal.jpg"
 date: "2026-06-09"
 tags: ["شبکه", "امنیت"]
 ---
