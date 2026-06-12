@@ -1,5 +1,5 @@
 ---
-title: npm  بررسی کامل اسکریپت‌های  و تغییرات امنیتی GitHub در نسخه 12"
+title: " title: "npm چیست؟ بررسی کامل اسکریپت‌های <span dir='ltr'>npm</span> و تغییرات امنیتی <span dir='ltr'>GitHub</span> در نسخه 12" "
 description: "npm چیست و اسکریپت‌های آن چگونه کار می‌کنند؟ در این مقاله جامع، خطرات امنیتی npm، حمله event-stream و تغییرات مهم GitHub در نسخه 12 را به زبان ساده بررسی می‌کنیم."
 cover: "/images/github and npm12.png"
 date: "2026-06-12"
