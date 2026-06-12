@@ -41,12 +41,12 @@ const { Content } = await render(post);
       <a href="/about">درباره</a>
     </div>
 
-    <main class="single-post-container">
+    <main class="single-post-container" dir="rtl">
       <article class="glass-panel single-post-content">
         {post.data.cover && (
           <img src={post.data.cover} alt={post.data.title} class="post-cover-large" />
         )}
-        <h1>{post.data.title}</h1>
+        <h1 style="text-align: right; direction: rtl;">{post.data.title}</h1>
         <hr class="glass-divider" />
         
         <div class="markdown-content">
