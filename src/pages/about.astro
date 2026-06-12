@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>درباره من | Tech2049</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="glass-capsule">
+      <div class="logo"><a href="/">Tech2049</a></div>
+      <nav class="desktop-nav">
+        <a href="/about">درباره</a>
+      </nav>
+      <button class="hamburger" id="menu-btn" aria-label="منو">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="mobile-menu glass-panel" id="mobile-menu">
+      <a href="/about">درباره</a>
+    </div>
+
+    <main class="about-container">
+      <div class="glass-panel about-content">
+        <div class="profile-header">
+          <div class="profile-avatar">M</div>
+          <h1>درباره من</h1>
+          
+        </div>
+        
+        <hr class="glass-divider" />
+        
+        <section class="bio-section">
+          <h2>من کی هستم؟</h2>
+          <p>
+           سلام من سامان راستین هستم نویسنده و وبلاک نویس شبکه و امنیت و نرم افزار از سال 404 نویسندگی رو شروع کردم ضرفا در جهت تغییر ایجاد کردن اول در خودم و دوم در جامعه ای که زندگی میکنم خوش حال میشم اگه نظری یا حمایتی دارید با من به اشتراک بگذارید 
+          </p>
+        </section>
+
+        <section class="contact-section">
+          <h2>راه‌های ارتباطی</h2>
+          <div class="contact-grid">
+            <a href="mailto:your-saman.rastin@proton.me" class="contact-item glass-card">
+              <span class="icon">📧</span>
+              <h3>ایمیل</h3>
+              <p>جهت ارتباط </p>
+            </a>
+            <a href="https://github.com/mohammadceceli" target="_blank" class="contact-item glass-card">
+              <span class="icon">💻</span>
+              <h3>گیت‌هاب</h3>
+              <p>مشاهده پروژه‌ها و کدهای من</p>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  // استخراج تمام تگ‌های منحصر‌به‌فرد از بین همه مقالات
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+  
+  // ایجاد مسیر برای هر تگ به همراه مقالات مربوط به آن تگ
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+function toPersianDate(dateString: string) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('fa-IR', { dateStyle: 'long' }).format(date);
+}
+---
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>مطالب دسته {tag} | Tech2049</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="glass-capsule">
+  <div class="logo"><a href="/">Tech2049</a></div>
+  <nav class="desktop-nav">
+    <a href="/about">درباره</a>
+  </nav>
+</header>
+    </header>
+
+    <main>
+      <div class="tag-header-panel glass-panel">
+        <h1>دسته‌بندی: <span class="highlight-tag">{tag}</span></h1>
+        <p>تعداد مطالب یافت شده: {posts.length} مقاله</p>
+      </div>
+
+      <div class="post-grid tag-specific-grid">
+        {posts.map((post) => (
+          <article class="glass-card tag-card">
+            {post.data.cover && (
+              <img src={post.data.cover} alt={post.data.title} class="post-cover" />
+            )}
+            <span class="post-date">{toPersianDate(post.data.date)}</span>
+            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>

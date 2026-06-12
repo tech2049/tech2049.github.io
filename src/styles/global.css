@@ -1,0 +1,393 @@
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-blur: blur(16px);
+}
+
+body {
+  margin: 0;
+  /* فونت وزیرمتن در اولویت قرار گرفت */
+  font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e1e38);
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* --- هدر کپسولی --- */
+header.glass-capsule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px; /* ایجاد حالت کپسولی */
+  padding: 15px 30px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.desktop-nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: opacity 0.3s;
+}
+
+.desktop-nav a:hover {
+  opacity: 0.7;
+}
+
+/* --- منوی همبرگری و موبایل --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 90px;
+  left: 5%;
+  right: 5%;
+  padding: 20px;
+  border-radius: 20px;
+  z-index: 99;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* --- گلس کارت‌ها (گرید مطالب) --- */
+.glass-panel, .glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.glass-card {
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* --- ساختار گرید --- */
+main {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* --- ریسپانسیو (موبایل) --- */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none; /* مخفی کردن منوی افقی در موبایل */
+  }
+  .hamburger {
+    display: flex; /* نمایش دکمه همبرگری */
+  }
+  header.glass-capsule {
+    border-radius: 30px;
+    padding: 15px 20px;
+  }
+}/* --- استایل عکس کاور در گرید --- */
+.post-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* جلوگیری از کشیده شدن عکس */
+  border-radius: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--glass-border);
+}
+
+/* --- استایل‌های صفحه تکی مقاله --- */
+.single-post-container {
+  max-width: 800px; /* عرض کمتر برای خوانایی بهتر متن */
+  margin: 40px auto;
+}
+
+.single-post-content {
+  padding: 40px;
+}
+
+.post-cover-large {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  border: 1px solid var(--glass-border);
+}
+
+.glass-divider {
+  border: 0;
+  height: 1px;
+  background: var(--glass-border);
+  margin: 30px 0;
+}
+
+/* استایل‌دهی به تگ‌های داخل متن مقاله */
+.markdown-content h2, .markdown-content h3 {
+  color: #fff;
+  margin-top: 30px;
+}
+
+.markdown-content p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #e2e8f0;
+}
+
+.markdown-content a {
+  color: #38bdf8;
+}
+/* --- استایل‌های اختصاصی صفحه درباره من --- */
+.about-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.about-content {
+  padding: 40px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: white;
+  margin: 0 auto 20px auto;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
+}
+
+.profile-subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.bio-section, .contact-section {
+  text-align: right;
+  margin-top: 35px;
+}
+
+.bio-section h2, .contact-section h2 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.bio-section p, .contact-section p {
+  line-height: 1.8;
+  color: #e2e8f0;
+}
+
+/* شبکه راه‌های ارتباطی */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.contact-item {
+  text-align: center;
+  padding: 25px 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.contact-item .icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.contact-item h3 {
+  margin: 10px 0 5px 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.contact-item p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 0;
+}
+/* --- استایل تگ‌های مقالات --- */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tag-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #38bdf8; /* رنگ آبی ملایم برای تمایز تگ‌ها */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.tag-badge:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+/* --- استایل تاریخ انتشار در کارت‌ها --- */
+.post-date {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* --- استایل برچسب‌های انتهای صفحه مقاله --- */
+.article-footer-tags {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--glass-border);
+}
+
+.article-footer-tags h3 {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+.post-tags a.tag-badge {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* --- استایل‌های اختصاصی گرید متمایز تگ‌ها --- */
+.tag-header-panel {
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(56, 189, 248, 0.05));
+}
+
+.highlight-tag {
+  color: #38bdf8;
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.tag-header-panel p {
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* ایجاد تمایز ظاهری برای کارت‌های صفحه تگ */
+.tag-specific-grid .tag-card {
+  border-left: 3px solid #38bdf8; /* خط عمودی متمایز سمت راست/چپ کارت */
+}
+.logo a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.logo a:hover {
+  opacity: 0.9;
+}
+/* --- تنظیمات تایپوگرافی کارت‌های گرید --- */
+
+/* استایل تیتر: پررنگ، بزرگ‌تر و برجسته */
+.glass-card h2 {
+  margin: 12px 0 10px 0;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.glass-card h2 a {
+  color: #ffffff; /* رنگ کاملاً روشن */
+  text-decoration: none;
+  font-weight: 700; /* ضخامت بیشتر برای فونت وزیرمتن */
+  transition: color 0.3s ease;
+}
+
+/* افکت تغییر رنگ تیتر موقع قرار گرفتن موس (Hover) */
+.glass-card h2 a:hover {
+  color: #38bdf8; /* رنگ آبی ملایم سایت شما */
+}
+
+/* استایل توضیحات: کمرنگ‌تر، ظریف‌تر و خوانا */
+.glass-card p {
+  color: #94a3b8; /* رنگ خاکستری متمایل به آبی (Slate) */
+  font-size: 0.95rem; /* سایز کوچکتر برای تمایز از تیتر */
+  line-height: 1.7; /* فاصله مناسب بین خطوط برای خوانایی بهتر متن فارسی */
+  font-weight: 400;
+  margin-bottom: 0;
+}

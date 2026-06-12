@@ -1,11 +1,66 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import '../styles/global.css';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = await getCollection('blog');
+
+function toPersianDate(dateString: string) {
+  if (!dateString) return 'بدون تاریخ';
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('fa-IR', { dateStyle: 'long' }).format(date);
+}
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech2049 | صفحه اصلی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="glass-capsule">
+      <div class="logo"><a href="/">Tech2049</a></div>
+      <nav class="desktop-nav">
+        <a href="/about">درباره</a>
+      </nav>
+      <button class="hamburger" id="menu-btn" aria-label="منو">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="mobile-menu glass-panel" id="mobile-menu">
+      <a href="/about">درباره</a>
+    </div>
+
+    <main>
+    
+      <div class="post-grid">
+        {posts.map((post) => (
+          <article class="glass-card">
+            {post.data.cover && (
+              <img src={post.data.cover} alt={post.data.title} class="post-cover" />
+            )}
+            
+            <span class="post-date">{toPersianDate(post.data.date)}</span>
+            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+          </article>
+        ))}
+      </div>
+    </main>
+
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>

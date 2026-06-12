@@ -1,0 +1,78 @@
+---
+import { getCollection, render } from 'astro:content';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{post.data.title} | Tech2049</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="glass-capsule">
+      <div class="logo"><a href="/">Tech2049</a></div>
+      <nav class="desktop-nav">
+        <a href="/about">درباره</a>
+      </nav>
+      <button class="hamburger" id="menu-btn" aria-label="منو">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="mobile-menu glass-panel" id="mobile-menu">
+      <a href="/about">درباره</a>
+    </div>
+
+    <main class="single-post-container">
+      <article class="glass-panel single-post-content">
+        {post.data.cover && (
+          <img src={post.data.cover} alt={post.data.title} class="post-cover-large" />
+        )}
+        <h1>{post.data.title}</h1>
+        <hr class="glass-divider" />
+        
+        <div class="markdown-content">
+          <Content />
+        </div>
+
+        {/* نمایش تگ‌ها در انتهای متن مقاله */}
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="article-footer-tags">
+            <h3>برچسب‌ها:</h3>
+            <div class="post-tags">
+              {post.data.tags.map(tag => (
+                <a href={`/tags/${tag}`} class="tag-badge">#{tag}</a>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+    </main>
+
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>
