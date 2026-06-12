@@ -16,10 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # این خط مشکل 128 در Checkout را معمولاً حل می‌کند
+          fetch-depth: 0
       
+      # نسخه Node را به ۲۲ تغییر دادیم
       - name: Install, build, and upload
         uses: withastro/action@v3
+        with:
+          node-version: 22
 
   deploy:
     needs: build
