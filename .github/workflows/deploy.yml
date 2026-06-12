@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+# اضافه کردن این بخش برای حل خطای دسترسی
+permissions:
+  contents: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -11,10 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install, Build & Deploy
+      - name: Install & Build
         uses: withastro/action@v2
-        # این اکشن به صورت خودکار npm install و npm run build را اجرا می‌کند
-      
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
