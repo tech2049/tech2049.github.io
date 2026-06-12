@@ -14,11 +14,11 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<html lang="fa" dir="auto">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{post.data.title} | Tech2049</title>
+    <title>&rlm;{post.data.title} | Tech2049</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
@@ -46,7 +46,8 @@ const { Content } = await render(post);
         {post.data.cover && (
           <img src={post.data.cover} alt={post.data.title} class="post-cover-large" />
         )}
-        <h1 style="text-align: right; direction: rtl;">{post.data.title}</h1>
+        
+        <h1 style="text-align: right; direction: rtl;">&rlm;{post.data.title}</h1>
         <hr class="glass-divider" />
         
         <div class="markdown-content">

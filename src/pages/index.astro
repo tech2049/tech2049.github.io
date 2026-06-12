@@ -39,7 +39,6 @@ function toPersianDate(dateString: string) {
     </div>
 
     <main>
-    
       <div class="post-grid">
         {posts.map((post) => (
           <article class="glass-card">
@@ -48,8 +47,9 @@ function toPersianDate(dateString: string) {
             )}
             
             <span class="post-date">{toPersianDate(post.data.date)}</span>
-            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
-            <p>{post.data.description}</p>
+            {/* اضافه شدن کد &rlm; برای حل مشکل بهم‌ریختگی کلمات */}
+            <h2><a href={`/blog/${post.id}`}>&rlm;{post.data.title}</a></h2>
+            <p>&rlm;{post.data.description}</p>
           </article>
         ))}
       </div>
